@@ -41,7 +41,7 @@ public interface UserMapper {
     /**
      * 查询忘记密码的问题
      * @param username 用户名
-     * @return 问题
+     * @return 忘记密码的问题
      */
     String selectQuestionByUsername(String username);
 
@@ -53,4 +53,28 @@ public interface UserMapper {
      * @return 问题答案的数量，大于0表示问题和答案相符
      */
     int checkAnswer(@Param("username") String username, @Param("question") String question, @Param("answer") String answer);
+
+    /**
+     * 更新用户密码
+     * @param username
+     * @param passwordNew
+     * @return 更新条数，大于0即为更新成功
+     */
+    int updatePasswordByUsername(@Param("username") String username, @Param("passwordNew") String passwordNew);
+
+    /**
+     * 校验用户密码
+     * @param passwordOld
+     * @param userId
+     * @return 查询结果数量,大于0表示旧密码正确
+     */
+    int checkPassword(@Param("passwordOld") String passwordOld, @Param("userId") int userId);
+
+    /**
+     * 校验用户邮箱
+     * @param email 被检查的email
+     * @param userId 用户id
+     * @return 查询结果数量，大于0表示，有其他用户占用了当前输入的email
+     */
+    int checkEmailByUserId(@Param("email") String email, @Param("userId") Integer userId);
 }
