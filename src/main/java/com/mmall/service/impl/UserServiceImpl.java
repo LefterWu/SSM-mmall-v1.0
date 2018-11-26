@@ -115,7 +115,7 @@ public class UserServiceImpl implements IUserService {
         if (StringUtils.isNotBlank(question)) {
             return ServerResponse.createBySuccess(question);
         }
-        return ServerResponse.createByErrorMessage("找回密码的问题是空的");
+        return ServerResponse.createByErrorMessage("该用户未设置找回密码的问题");
     }
 
     @Override
@@ -124,7 +124,7 @@ public class UserServiceImpl implements IUserService {
         if (answerCount > 0) {
             //表明问题答案正确，且属于当前用户
             String forgetToken = UUID.randomUUID().toString();
-            //将forgetToken放到本地cache中，然后设置cache的有效期
+            //将forgetToken放到本地cache中
             TokenCache.setKey(TokenCache.TOKEN_PREFIX + username, forgetToken);
             return ServerResponse.createBySuccess(forgetToken);
         }
@@ -135,7 +135,7 @@ public class UserServiceImpl implements IUserService {
     public ServerResponse<String> forgetResetPassword(String username, String passwordNew, String forgetToken) {
         //如果token为空，返回错误响应
         if(StringUtils.isBlank(forgetToken)) {
-            return ServerResponse.createByErrorMessage("检查不到token");
+            return ServerResponse.createByErrorMessage("token为空，请先获取token");
         }
         //校验用户名，如果用户名不存在，返回错误响应
         ServerResponse<String> validResponse = this.checkValid(username, Const.USERNAME);
@@ -173,9 +173,9 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(MD5Util.MD5EncodeUtf8(passwordNew));
         int rowCount = userMapper.updateByPrimaryKeySelective(user);
         if( rowCount > 0 ) {
-            return ServerResponse.createBySuccessMessage("密码更新成功");
+            return ServerResponse.createBySuccessMessage("密码修改成功");
         }
-        return ServerResponse.createByErrorMessage("密码更新失败");
+        return ServerResponse.createByErrorMessage("密码修改失败");
     }
 
     @Override
@@ -185,7 +185,6 @@ public class UserServiceImpl implements IUserService {
         if(resultCount > 0) {
             return ServerResponse.createByErrorMessage("email已存在，请更换email");
         }
-
         //updateUser，需要更新的user对象，只更新部分字段
         User updateUser = new User();
         updateUser.setId(user.getId());
