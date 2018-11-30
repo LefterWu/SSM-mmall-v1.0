@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 /**
- * @Description: 后台用户Controller
+ * @Description: 后台用户管理控制器
  * @author: wuleshen
  */
 

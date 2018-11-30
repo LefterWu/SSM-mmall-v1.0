@@ -1,4 +1,4 @@
-### 后台_用户接口
+后台_用户接口
 
 [TOC]
 
@@ -7,39 +7,52 @@
 **/manage/user/login.do**
 
 
-> request
+- request
 
 ```
-String username,
+String username
 String password
 ```
 
-> response
+- response
 
 success
 
-```
+```json
 {
     "status": 0,
-    "data": {
-        "id": 12,
-        "username": "aaa",
-        "email": "aaa@163.com",
-        "phone": null,
-        "role": 0,
-        "createTime": 1479048325000,
-        "updateTime": 1479048325000
+    "msg": "登录成功",
+    "data":{
+        "id": 1,
+        "username": "admin",
+        "password": "",
+        "email": "admin01@mmall.com",
+        "phone": "18510001001",
+        "question": "新问题",
+        "answer": "新答案",
+        "role": 1,
+        "createTime": 1478422605000,
+        "updateTime": 1543238043000
     }
 }
 ```
 
 fail
-```
+```json
 {
     "status": 1,
-    "msg": "密码错误"
+    "msg": "用户名或密码错误"
 }
 ```
+
+```json
+{
+    "status": 1,
+    "msg": "不是管理员账号，无法登录"
+}
+```
+
+
 
 ------
 
@@ -49,14 +62,14 @@ fail
 **/manage/user/list.do**
 
 
-> request
+- request
 
 ```
 pageSize(default=10)
 pageNum(default=1)
 ```
 
-> response
+- response
 
 success
 
@@ -137,29 +150,3 @@ fail
 
 
 ```
-------
-
-#### 3.模板
-
-**/REPLACE/.do**
-
-> request
-
-```
-k
-```
-
-> response
-
-success
-
-```
-k
-```
-
-fail
-```
-k
-```
-
-------
