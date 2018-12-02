@@ -70,7 +70,7 @@ public class ICategoryServiceImpl implements ICategoryService {
         }
         //得到品类List
         List<Category> categoryList = categoryMapper.selectChildrenCategoryByParentId(categoryId);
-        if(CollectionUtils.isEmpty(categoryList)) {
+        if(CollectionUtils.isEmpty(categoryList) && logger.isInfoEnabled()) {
             //这里打印一行日志，不用返回错误，不然前端没有内容展示
             logger.info("未找到当前分类的子分类");
         }
@@ -82,10 +82,12 @@ public class ICategoryServiceImpl implements ICategoryService {
      * @param categoryId 品类id
      * @return 本节点及子节点idList
      */
+    @Override
     public ServerResponse<List<Integer>> getCategoryAndChildrenById(Integer categoryId) {
         Set<Category> categorySet = Sets.newHashSet();
         findChildCategory(categorySet, categoryId);
 
+        //用一个List存放被查节点的id
         List<Integer> categoryIdList = Lists.newArrayList();
         if (categoryId != null) {
             for(Category categoryItem: categorySet) {
@@ -98,7 +100,7 @@ public class ICategoryServiceImpl implements ICategoryService {
 
     /**
      * 递归查找子节点
-     * @param categorySet 递归调用的中间参数
+     * @param categorySet 被查找品类及其子品类会被添加到这个Set
      * @param categoryId 品类id
      * @return Category的Set集合
      */
@@ -107,14 +109,19 @@ public class ICategoryServiceImpl implements ICategoryService {
         if(category != null) {
             categorySet.add(category);
         }
-        //查找子节点
+        //查找下一层的所有子节点
         List<Category> categoryList = categoryMapper.selectChildrenCategoryByParentId(categoryId);
-        //如果查询子节点不为空，则递归调用
-        if(!CollectionUtils.isEmpty(categoryList)) {
-            for (Category c: categoryList) {
-                findChildCategory(categorySet, c.getId());
+        //调试用
+        if(logger.isInfoEnabled()) {
+            for(Category c: categoryList) {
+                logger.info("categoryList: " + c.toString());
             }
         }
+        //如果有子节点，递归调用
+        for (Category categoryItem: categoryList) {
+            findChildCategory(categorySet, categoryItem.getId());
+        }
+        //如果没有子节点，既查不到categoryList，mybatis不会返回null，程序执行到这里，直接返回Set
         return categorySet;
     }
 

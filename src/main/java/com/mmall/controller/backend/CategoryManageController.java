@@ -49,7 +49,7 @@ public class CategoryManageController {
         if(iUserService.checkAdminRole(user).isSuccuess()) {
             return iCategoryService.addCategory(categoryName, parentId);
         }
-        return ServerResponse.createByErrorMessage("不是管理员用户，无法进行添加操作");
+        return ServerResponse.createByErrorMessage("不是管理员用户，无法进行操作");
     }
 
     /**
@@ -72,7 +72,7 @@ public class CategoryManageController {
             //更新品类的名称
             return iCategoryService.updateCategoryName(categoryName, categoryId);
         }
-        return ServerResponse.createByErrorMessage("不是管理员用户，无法进行添加操作");
+        return ServerResponse.createByErrorMessage("不是管理员用户，无法进行操作");
     }
 
     /**
@@ -95,7 +95,7 @@ public class CategoryManageController {
             //查询同一级别子节点的category信息
             return iCategoryService.getChildrenParallelCategory(categoryId);
         }
-        return ServerResponse.createByErrorMessage("不是管理员用户，无法进行添加操作");
+        return ServerResponse.createByErrorMessage("不是管理员用户，无法进行操作");
     }
 
     /**
@@ -116,9 +116,9 @@ public class CategoryManageController {
         //校验是否为管理员
         if(iUserService.checkAdminRole(user).isSuccuess()) {
             //查询当前节点和递归子节点的category信息
-
+            return iCategoryService.getCategoryAndChildrenById(categoryId);
         }
-        return ServerResponse.createByErrorMessage("不是管理员用户，无法进行添加操作");
+        return ServerResponse.createByErrorMessage("不是管理员用户，无法进行操作");
     }
 
 }
