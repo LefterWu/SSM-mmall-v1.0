@@ -21,7 +21,7 @@ import java.util.Set;
  * @Description: 商品品类相关业务
  * @author: wuleshen
  */
-@Service
+@Service("iCategoryService")
 public class ICategoryServiceImpl implements ICategoryService {
 
     private Logger logger = LoggerFactory.getLogger(ICategoryServiceImpl.class);
