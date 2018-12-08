@@ -1,7 +1,5 @@
 package com.mmall.service.impl;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.mmall.common.ServerResponse;
 import com.mmall.dao.CategoryMapper;
 import com.mmall.pojo.Category;
@@ -13,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -84,11 +83,11 @@ public class ICategoryServiceImpl implements ICategoryService {
      */
     @Override
     public ServerResponse<List<Integer>> getCategoryAndChildrenById(Integer categoryId) {
-        Set<Category> categorySet = Sets.newHashSet();
+        Set<Category> categorySet = new HashSet<>();
         findChildCategory(categorySet, categoryId);
 
         //用一个List存放被查节点的id
-        List<Integer> categoryIdList = Lists.newArrayList();
+        List<Integer> categoryIdList = new ArrayList<>();
         if (categoryId != null) {
             for(Category categoryItem: categorySet) {
                 categoryIdList.add(categoryItem.getId());

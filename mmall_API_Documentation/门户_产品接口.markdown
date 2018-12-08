@@ -1,11 +1,12 @@
-[MENU]
+### 门户_产品接口
 
+[TOC]
 
-####1.产品搜索及动态排序List
-
-**/product/list.do**
+#### 1.产品搜索及动态排序List
 
 http://localhost:8080/product/list.do?keyword=&categoryId=1&orderBy=price_desc
+
+**/product/list.do**
 
 > request
 
@@ -15,49 +16,47 @@ keyword
 pageNum(default=1)
 pageSize(default=10)
 orderBy(default="")：排序参数：例如price_desc，price_asc
-
 ```
 
 > response
 
 success
 
-```
+```json
 {
     "status": 0,
     "data": {
+        "total": 2,
+        "list": [
+            {
+                "id": 26,
+                "categoryId": 100002,
+                "name": "Apple iPhone 7 Plus (A1661) 128G 玫瑰金色 移动联通电信4G手机",
+                "subtitle": "iPhone 7，现更以红色呈现。",
+                "mainImage": "241997c4-9e62-4824-b7f0-7425c3c28917.jpeg",
+                "price": 6999,
+                "status": 1,
+                "imageHost": "http://img.mmall.com/"
+            },
+            {
+                "id": 28,
+                "categoryId": 100012,
+                "name": "4+64G送手环/Huawei/华为 nova 手机P9/P10plus青春",
+                "subtitle": "NOVA青春版1999元",
+                "mainImage": "0093f5d3-bdb4-4fb0-bec5-5465dfd26363.jpeg",
+                "price": 1999,
+                "status": 1,
+                "imageHost": "http://img.mmall.com/"
+            }
+        ],
         "pageNum": 1,
         "pageSize": 10,
         "size": 2,
-        "orderBy": null,
         "startRow": 1,
         "endRow": 2,
-        "total": 2,
         "pages": 1,
-        "list": [
-            {
-                "id": 1,
-                "categoryId": 3,
-                "name": "iphone7",
-                "subtitle": "双十一促销",
-                "mainImage": "mainimage.jpg",
-                "status":1,
-                "price": 7199.22
-            },
-            {
-                "id": 2,
-                "categoryId": 2,
-                "name": "oppo R8",
-                "subtitle": "oppo促销进行中",
-                "mainImage": "mainimage.jpg",
-                "status":1,
-                "price": 2999.11
-            }
-        ],
-        "firstPage": 1,
         "prePage": 0,
         "nextPage": 0,
-        "lastPage": 1,
         "isFirstPage": true,
         "isLastPage": true,
         "hasPreviousPage": false,
@@ -65,19 +64,20 @@ success
         "navigatePages": 8,
         "navigatepageNums": [
             1
-        ]
+        ],
+        "navigateFirstPage": 1,
+        "navigateLastPage": 1
     }
 }
 ```
 
 fail
-```
+```json
 {
     "status": 1,
     "msg": "参数错误"
 }
 ```
-
 
 ------
 
@@ -97,60 +97,34 @@ productId
 
 success
 
-```
+```json
 {
-  "status": 0,
-  "data": {
-    "id": 2,
-    "categoryId": 2,
-    "name": "oppo R8",
-    "subtitle": "oppo促销进行中",
-    "mainImage": "mainimage.jpg",
-    "subImages": "[\"mmall/aa.jpg\",\"mmall/bb.jpg\",\"mmall/cc.jpg\",\"mmall/dd.jpg\",\"mmall/ee.jpg\"]",
-    "detail": "richtext",
-    "price": 2999.11,
-    "stock": 71,
-    "status": 1,
-    "createTime": "2016-11-20 14:21:53",
-    "updateTime": "2016-11-20 14:21:53"
-  }
+    "status": 0,
+    "data": {
+        "id": 26,
+        "categoryId": 100002,
+        "name": "Apple iPhone 7 Plus (A1661) 128G 玫瑰金色 移动联通电信4G手机",
+        "subtitle": "iPhone 7，现更以红色呈现。",
+        "mainImage": "241997c4-9e62-4824-b7f0-7425c3c28917.jpeg",
+        "subImages": "241997c4-9e62-4824-b7f0-7425c3c28917.jpeg,b6c56eb0-1748-49a9-98dc-bcc4b9788a54.jpeg,92f17532-1527-4563-aa1d-ed01baa0f7b2.jpeg,3adbe4f7-e374-4533-aa79-cc4a98c529bf.jpeg",
+        "detail": "<p><img alt=\"10000.jpg\" src=\"http://img.happymmall.com/00bce8d4-e9af-4c8d-b205-e6c75c7e252b.jpg\" width=\"790\" height=\"553\"><br></p><p><img alt=\"20000.jpg\" src=\"http://img.happymmall.com/4a70b4b4-01ee-46af-9468-31e67d0995b8.jpg\" width=\"790\" height=\"525\"><br></p><p><img alt=\"30000.jpg\" src=\"http://img.happymmall.com/0570e033-12d7-49b2-88f3-7a5d84157223.jpg\" width=\"790\" height=\"365\"><br></p><p><img alt=\"40000.jpg\" src=\"http://img.happymmall.com/50515c02-3255-44b9-a829-9e141a28c08a.jpg\" width=\"790\" height=\"525\"><br></p><p><img alt=\"50000.jpg\" src=\"http://img.happymmall.com/c138fc56-5843-4287-a029-91cf3732d034.jpg\" width=\"790\" height=\"525\"><br></p><p><img alt=\"60000.jpg\" src=\"http://img.happymmall.com/c92d1f8a-9827-453f-9d37-b10a3287e894.jpg\" width=\"790\" height=\"525\"><br></p><p><br></p><p><img alt=\"TB24p51hgFkpuFjSspnXXb4qFXa-1776456424.jpg\" src=\"http://img.happymmall.com/bb1511fc-3483-471f-80e5-c7c81fa5e1dd.jpg\" width=\"790\" height=\"375\"><br></p><p><br></p><p><img alt=\"shouhou.jpg\" src=\"http://img.happymmall.com/698e6fbe-97ea-478b-8170-008ad24030f7.jpg\" width=\"750\" height=\"150\"><br></p><p><img alt=\"999.jpg\" src=\"http://img.happymmall.com/ee276fe6-5d79-45aa-8393-ba1d210f9c89.jpg\" width=\"790\" height=\"351\"><br></p>",
+        "price": 6999,
+        "stock": 9991,
+        "status": 1,
+        "createTime": "",
+        "updateTime": "2017-04-13 21:45:41",
+        "imageHost": "http://img.mmall.com/",
+        "parentCategoryId": 0
+    }
 }
 
 ```
 
 fail
-```
+```json
 {
     "status": 1,
-    "msg": "该商品已下架或删除"
+    "msg": "商品已下架或删除"
 }
 ```
 
-
-------
-
-####模板
-
-**/product/.do**
-
-> request
-
-```
-k
-```
-
-> response
-
-success
-
-```
-k
-```
-
-fail
-```
-k
-```
-
-
-------

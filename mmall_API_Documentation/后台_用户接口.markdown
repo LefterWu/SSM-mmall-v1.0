@@ -7,14 +7,14 @@
 **/manage/user/login.do**
 
 
-- request
+> rerequest
 
 ```
 String username
 String password
 ```
 
-- response
+> reresponse
 
 success
 
@@ -62,14 +62,14 @@ fail
 **/manage/user/list.do**
 
 
-- request
+> rerequest
 
 ```
 pageSize(default=10)
 pageNum(default=1)
 ```
 
-- response
+> reresponse
 
 success
 

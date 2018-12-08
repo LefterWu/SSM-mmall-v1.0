@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
+/**
+ * 配置文件工具类
+ */
 public class PropertiesUtil {
 
     private static Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
@@ -24,7 +27,7 @@ public class PropertiesUtil {
         }
     }
 
-    public static String getProperty(String key){
+    public static String getProperty(String key) {
         String value = props.getProperty(key.trim());
         if(StringUtils.isBlank(value)){
             return null;
@@ -32,15 +35,12 @@ public class PropertiesUtil {
         return value.trim();
     }
 
-    public static String getProperty(String key,String defaultValue){
-
+    public static String getProperty(String key,String defaultValue) {
         String value = props.getProperty(key.trim());
         if(StringUtils.isBlank(value)){
             value = defaultValue;
         }
         return value.trim();
     }
-
-
 
 }

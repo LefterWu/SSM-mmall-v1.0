@@ -27,7 +27,8 @@
     from mmall_product
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_product
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -176,4 +177,48 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--查询产品列表-->
+  <select id="selectList" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List"/>
+    FROM mmall_product
+    ORDER BY id ASC
+    /*注意：语句结束不能加分号，因为pageHelper插件会在sql后添加limit 10 offset 1之类的条件*/
+  </select>
+
+  <!--根据商品名称和id查询-->
+  <select id="selectByNameAndProductId" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM mmall_product
+    <where>
+      <if test="productName != null and productName != ''">
+        AND name LIKE #{productName}
+      </if>
+      <if test="productId != null and productId != ''">
+        AND id = #{productId}
+      </if>
+    </where>
+
+  </select>
+
+  <!--在目录名中对商品名查询-->
+  <select id="selectByKeywordCategoryIds" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM mmall_product
+    WHERE
+    status = 1
+    <if test="keyword != null">
+      AND name LIKE #{keyword}
+    </if>
+    <if test="categoryIdList != null">
+      AND category_Id IN
+      <foreach collection="categoryIdList" item="categoryId" index="index" open="(" separator="," close=")">
+        #{categoryId}
+      </foreach>
+    </if>
+
+  </select>
 </mapper>

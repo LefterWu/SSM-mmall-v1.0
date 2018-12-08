@@ -14,13 +14,13 @@ http://localhost:8080/manage/category/get_category.do?categoryId=100001
 
 **/manage/category/get_category.do**
 
-- request
+> request
 
 ```
 categoryId(default=0)
 ```
 
-- response
+> response
 
 success
 
@@ -96,14 +96,14 @@ fail
 
 **/manage/category/add_category.do**
 
-- request
+> request
 
 ```
 parentId(default=0)
 categoryName
 ```
 
-- response
+> response
 
 success
 
@@ -131,14 +131,14 @@ http://localhost:8080/manage/category/set_category_name.do?categoryId=1&category
 
 **/manage/category/set_category_name.do**
 
-- request
+> request
 
 ```
 categoryId
 categoryName
 ```
 
-- response
+> response
 
 success
 
@@ -165,13 +165,13 @@ http://localhost:8080/manage/category/get_deep_category.do?categoryId=100001
 
 **/manage/category/get_deep_category.do**
 
-- request
+> request
 
 ```
 categoryId
 ```
 
-- response
+> response
 
 success
 
