@@ -67,20 +67,16 @@ public class ICategoryServiceImpl implements ICategoryService {
         if(categoryId == null) {
             return  ServerResponse.createByErrorMessage("获得子节点参数错误");
         }
-        //得到品类List
+        //得到子品类List
         List<Category> categoryList = categoryMapper.selectChildrenCategoryByParentId(categoryId);
-        if(CollectionUtils.isEmpty(categoryList) && logger.isInfoEnabled()) {
+        if(CollectionUtils.isEmpty(categoryList)) {
             //这里打印一行日志，不用返回错误，不然前端没有内容展示
             logger.info("未找到当前分类的子分类");
         }
         return ServerResponse.createBySuccess(categoryList);
     }
 
-    /**
-     * 递归查询本节点id及子节点id
-     * @param categoryId 品类id
-     * @return 本节点及子节点idList
-     */
+
     @Override
     public ServerResponse<List<Integer>> getCategoryAndChildrenById(Integer categoryId) {
         Set<Category> categorySet = new HashSet<>();

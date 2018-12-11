@@ -30,4 +30,9 @@ public class Const {
     public interface ORDER_BY {
         Set<String> PRICE_ORDER = Sets.newHashSet("price_desc", "price_asc");
     }
+
+    public interface Cart {
+        int CHECKED = 1;    //购物车选中状态
+        int UN_CHECKED = 0; //购物车未选中状态
+    }
 }

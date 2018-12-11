@@ -69,12 +69,7 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createBySuccessMessage("注册成功");
     }
 
-    /**
-     * 校验指定类型的参数
-     * @param str 待校验参数
-     * @param type 参数类型（Const类中）
-     * @return 校验成功，返回错误响应（xxx已存在/参数错误）；校验失败，返回成功响应
-     */
+
     @Override
     public ServerResponse<String> checkValid(String str, String type) {
         //如果type不为空 ，分别校验用户名和密码

@@ -19,12 +19,6 @@ public class FileServiceImpl implements IFileService {
 
     private Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
 
-    /**
-     * 上传文件
-     * @param file 上传文件
-     * @param path 上传路径
-     * @return 返回上传文件的文件名
-     */
     @Override
     public String upload(MultipartFile file, String path) {
         //1.得到上传文件名

@@ -138,7 +138,7 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public ServerResponse<PageInfo> getProductList(int pageNum, int pageSize) {
-        //开始分页，pageNum 页码，pageSize 每页显示数量
+        //开始分页，pageNum 当前页，pageSize 每页显示数量
         PageHelper.startPage(pageNum, pageSize);
         //得到所有产品列表
         //将结果封装成vo对象

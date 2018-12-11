@@ -8,5 +8,11 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface IFileService {
 
+    /**
+     * 上传文件
+     * @param file 文件
+     * @param path 上传路径
+     * @return 上传文件的文件名（uuid重命名后的）
+     */
     String upload(MultipartFile file, String path);
 }

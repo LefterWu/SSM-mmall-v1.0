@@ -395,7 +395,7 @@ fail
 
 success
 
-```
+```json
 {
     "status": 0,
     "msg": "退出成功"
@@ -403,7 +403,7 @@ success
 ```
 
 fail
-```
+```json
 {
     "status": 1,
     "msg": "服务端异常"
