@@ -34,5 +34,7 @@ public class Const {
     public interface Cart {
         int CHECKED = 1;    //购物车选中状态
         int UN_CHECKED = 0; //购物车未选中状态
+        String INSUFFICIENT_STOCK = "INSUFFICIENT_STOCK";   //限制数量失败，即库存不够
+        String SUFFICIENT_STOCK = "SUFFICIENT_STOCK"; //限制数量成功，即库存充足
     }
 }

@@ -1,18 +1,12 @@
-[MENU]
+### 门户_购物车接口
 
+[TOC]
 
-
-
-####1.购物车List列表
+#### 1.购物车List列表
 
 **/cart/list.do**
 
 http://localhost:8080/cart/list.do
-
-注意点：
-1. 需要先登录,所有的密码都是123
-2. NEED_LOGIN(10, "NEED_LOGIN"),//需要登录的错误编码
-3. 价格的单位是元,保留小数后2位
 
 
 > request
@@ -26,57 +20,55 @@ http://localhost:8080/cart/list.do
 success
 
 ```
-
 {
     "status": 0,
     "data": {
         "cartProductVoList": [
             {
-                "id": 1,
-                "userId": 13,
-                "productId": 1,
-                "quantity": 1,
-                "productName": "iphone7",
-                "productSubtitle": "双十一促销",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 7199.22,
-                "productStatus": 1,
-                "productTotalPrice": 7199.22,
-                "productStock": 86,
+                "id": 128,
+                "userId": 1,
+                "productId": 26,
+                "quantity": 10,
                 "productChecked": 1,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
+                "productName": "Apple iPhone 7 Plus (A1661) 128G 玫瑰金色 移动联通电信4G手机",
+                "productSubtitle": "iPhone 7，现更以红色呈现。",
+                "productMainImage": "241997c4-9e62-4824-b7f0-7425c3c28917.jpeg",
+                "productPrice": 6999,
+                "productStock": 9991,
+                "productStatus": 1,
+                "productTotalPrice": 69990,
+                "limitQuantity": "SUFFICIENT_STOCK"
             },
             {
-                "id": 2,
-                "userId": 13,
-                "productId": 2,
-                "quantity": 1,
-                "productName": "oppo R8",
-                "productSubtitle": "oppo促销进行中",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 2999.11,
-                "productStatus": 1,
-                "productTotalPrice": 2999.11,
-                "productStock": 86,
+                "id": 129,
+                "userId": 1,
+                "productId": 28,
+                "quantity": 10,
                 "productChecked": 1,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
+                "productName": "4+64G送手环/Huawei/华为 nova 手机P9/P10plus青春",
+                "productSubtitle": "NOVA青春版1999元",
+                "productMainImage": "0093f5d3-bdb4-4fb0-bec5-5465dfd26363.jpeg",
+                "productPrice": 1999,
+                "productStock": 9994,
+                "productStatus": 1,
+                "productTotalPrice": 19990,
+                "limitQuantity": "SUFFICIENT_STOCK"
             }
         ],
+        "cartTotalPrice": 89980,
         "allChecked": true,
-        "cartTotalPrice": 10198.33
+        "imageHost": "http://img.mmall.com/"
     }
 }
-
 ```
 
 fail
 ```
 {
     "status": 10,
-    "msg": "用户未登录,请登录"
+    "msg": "NEED_LOGIN"
 }
 ```
-
 
 ------
 
@@ -84,16 +76,16 @@ fail
 
 
 
-####2.购物车添加商品
+#### 2.购物车添加商品
 
 **/cart/add.do**
 
-http://localhost:8080/cart/add.do?productId=1&count=10
+http://localhost:8080/cart/add.do?productId=26&count=10
 
 请注意这个字段，超过数量会返回这样的标识"limitQuantity"
 
-失败的：LIMIT_NUM_FAIL
-成功的：LIMIT_NUM_SUCCESS
+失败的：INSUFFICIENT_STOCK
+成功的：SUFFICIENT_STOCK
 
 
 > request
@@ -112,38 +104,24 @@ success
     "data": {
         "cartProductVoList": [
             {
-                "id": 1,
-                "userId": 13,
-                "productId": 1,
-                "quantity": 12,
-                "productName": "iphone7",
-                "productSubtitle": "双十一促销",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 7199.22,
-                "productStatus": 1,
-                "productTotalPrice": 86390.64,
-                "productStock": 86,
+                "id": 127,
+                "userId": 1,
+                "productId": 26,
+                "quantity": 10,
                 "productChecked": 1,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
-            },
-            {
-                "id": 2,
-                "userId": 13,
-                "productId": 2,
-                "quantity": 1,
-                "productName": "oppo R8",
-                "productSubtitle": "oppo促销进行中",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 2999.11,
+                "productName": "Apple iPhone 7 Plus (A1661) 128G 玫瑰金色 移动联通电信4G手机",
+                "productSubtitle": "iPhone 7，现更以红色呈现。",
+                "productMainImage": "241997c4-9e62-4824-b7f0-7425c3c28917.jpeg",
+                "productPrice": 6999,
+                "productStock": 9991,
                 "productStatus": 1,
-                "productTotalPrice": 2999.11,
-                "productStock": 86,
-                "productChecked": 1,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
+                "productTotalPrice": 69990,
+                "limitQuantity": "SUFFICIENT_STOCK"
             }
         ],
+        "cartTotalPrice": 69990,
         "allChecked": true,
-        "cartTotalPrice": 89389.75
+        "imageHost": "http://img.mmall.com/"
     }
 }
 ```
@@ -152,10 +130,9 @@ fail
 ```
 {
     "status": 10,
-    "msg": "用户未登录,请登录"
+    "msg": "NEED_LOGIN"
 }
 ```
-
 
 ------
 
@@ -163,11 +140,11 @@ fail
 
 
 
-####3.更新购物车某个产品数量
+#### 3.更新购物车某个产品数量
 
 **/cart/update.do**
 
-http://localhost:8080/cart/update.do?productId=1&count=2
+http://localhost:8080/cart/update.do?productId=26&count=5
 
 > request
 
@@ -177,8 +154,6 @@ productId,count
 
 > response
 
-响应同2
-
 success
 
 ```
@@ -187,38 +162,39 @@ success
     "data": {
         "cartProductVoList": [
             {
-                "id": 1,
-                "userId": 13,
-                "productId": 1,
-                "quantity": 12,
-                "productName": "iphone7",
-                "productSubtitle": "双十一促销",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 7199.22,
-                "productStatus": 1,
-                "productTotalPrice": 86390.64,
-                "productStock": 86,
+                "id": 128,
+                "userId": 1,
+                "productId": 26,
+                "quantity": 5,
                 "productChecked": 1,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
+                "productName": "Apple iPhone 7 Plus (A1661) 128G 玫瑰金色 移动联通电信4G手机",
+                "productSubtitle": "iPhone 7，现更以红色呈现。",
+                "productMainImage": "241997c4-9e62-4824-b7f0-7425c3c28917.jpeg",
+                "productPrice": 6999,
+                "productStock": 9991,
+                "productStatus": 1,
+                "productTotalPrice": 34995,
+                "limitQuantity": "SUFFICIENT_STOCK"
             },
             {
-                "id": 2,
-                "userId": 13,
-                "productId": 2,
-                "quantity": 1,
-                "productName": "oppo R8",
-                "productSubtitle": "oppo促销进行中",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 2999.11,
-                "productStatus": 1,
-                "productTotalPrice": 2999.11,
-                "productStock": 86,
+                "id": 129,
+                "userId": 1,
+                "productId": 28,
+                "quantity": 10,
                 "productChecked": 1,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
+                "productName": "4+64G送手环/Huawei/华为 nova 手机P9/P10plus青春",
+                "productSubtitle": "NOVA青春版1999元",
+                "productMainImage": "0093f5d3-bdb4-4fb0-bec5-5465dfd26363.jpeg",
+                "productPrice": 1999,
+                "productStock": 9994,
+                "productStatus": 1,
+                "productTotalPrice": 19990,
+                "limitQuantity": "SUFFICIENT_STOCK"
             }
         ],
+        "cartTotalPrice": 54985,
         "allChecked": true,
-        "cartTotalPrice": 89389.75
+        "imageHost": "http://img.mmall.com/"
     }
 }
 ```
@@ -227,22 +203,19 @@ fail
 ```
 {
     "status": 10,
-    "msg": "用户未登录,请登录"
+    "msg": "NEED_LOGIN"
 }
 ```
-
 
 ------
 
 
 
-
-
-####4.移除购物车某个产品
+#### 4.移除购物车某个产品
 
 **/cart/delete_product.do**
 
-http://localhost:8080/cart/delete_product.do?productIds=1,3
+http://localhost:8080/cart/delete_product.do?productIds=26,,28
 
 > request
 
@@ -258,25 +231,10 @@ success
 {
     "status": 0,
     "data": {
-        "cartProductVoList": [
-            {
-                "id": 2,
-                "userId": 13,
-                "productId": 2,
-                "quantity": 1,
-                "productName": "oppo R8",
-                "productSubtitle": "oppo促销进行中",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 2999.11,
-                "productStatus": 1,
-                "productTotalPrice": 2999.11,
-                "productStock": 86,
-                "productChecked": 1,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
-            }
-        ],
+        "cartProductVoList": [],
+        "cartTotalPrice": 0,
         "allChecked": true,
-        "cartTotalPrice": 2999.11
+        "imageHost": "http://img.mmall.com/"
     }
 }
 ```
@@ -285,10 +243,9 @@ fail
 ```
 {
     "status": 10,
-    "msg": "用户未登录,请登录"
+    "msg": "NEED_LOGIN"
 }
 ```
-
 
 ------
 
@@ -296,7 +253,7 @@ fail
 
 
 
-####5.购物车选中某个商品
+#### 5.购物车选中某个商品
 
 **/cart/select.do**
 
@@ -319,23 +276,39 @@ success
     "data": {
         "cartProductVoList": [
             {
-                "id": 2,
-                "userId": 13,
-                "productId": 2,
-                "quantity": 1,
-                "productName": "oppo R8",
-                "productSubtitle": "oppo促销进行中",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 2999.11,
-                "productStatus": 1,
-                "productTotalPrice": 2999.11,
-                "productStock": 86,
+                "id": 132,
+                "userId": 1,
+                "productId": 26,
+                "quantity": 10,
                 "productChecked": 1,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
+                "productName": "Apple iPhone 7 Plus (A1661) 128G 玫瑰金色 移动联通电信4G手机",
+                "productSubtitle": "iPhone 7，现更以红色呈现。",
+                "productMainImage": "241997c4-9e62-4824-b7f0-7425c3c28917.jpeg",
+                "productPrice": 6999,
+                "productStock": 9991,
+                "productStatus": 1,
+                "productTotalPrice": 69990,
+                "limitQuantity": "SUFFICIENT_STOCK"
+            },
+            {
+                "id": 133,
+                "userId": 1,
+                "productId": 28,
+                "quantity": 10,
+                "productChecked": 1,
+                "productName": "4+64G送手环/Huawei/华为 nova 手机P9/P10plus青春",
+                "productSubtitle": "NOVA青春版1999元",
+                "productMainImage": "0093f5d3-bdb4-4fb0-bec5-5465dfd26363.jpeg",
+                "productPrice": 1999,
+                "productStock": 9994,
+                "productStatus": 1,
+                "productTotalPrice": 19990,
+                "limitQuantity": "SUFFICIENT_STOCK"
             }
         ],
+        "cartTotalPrice": 89980,
         "allChecked": true,
-        "cartTotalPrice": 2999.11
+        "imageHost": "http://img.mmall.com/"
     }
 }
 ```
@@ -344,10 +317,9 @@ fail
 ```
 {
     "status": 10,
-    "msg": "用户未登录,请登录"
+    "msg": "NEED_LOGIN"
 }
 ```
-
 
 ------
 
@@ -355,11 +327,11 @@ fail
 
 
 
-####6.购物车取消选中某个商品
+#### 6.购物车取消选中某个商品
 
 **/cart/un_select.do**
 
-http://localhost:8080/cart/un_select.do?productId=2
+http://localhost:8080/cart/un_select.do?productId=26
 
 > 注意返回值中的cartTotalPrice，如果反选之后总价的变化
 
@@ -379,23 +351,39 @@ success
     "data": {
         "cartProductVoList": [
             {
-                "id": 2,
-                "userId": 13,
-                "productId": 2,
-                "quantity": 1,
-                "productName": "oppo R8",
-                "productSubtitle": "oppo促销进行中",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 2999.11,
-                "productStatus": 1,
-                "productTotalPrice": 2999.11,
-                "productStock": 86,
+                "id": 132,
+                "userId": 1,
+                "productId": 26,
+                "quantity": 10,
                 "productChecked": 0,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
+                "productName": "Apple iPhone 7 Plus (A1661) 128G 玫瑰金色 移动联通电信4G手机",
+                "productSubtitle": "iPhone 7，现更以红色呈现。",
+                "productMainImage": "241997c4-9e62-4824-b7f0-7425c3c28917.jpeg",
+                "productPrice": 6999,
+                "productStock": 9991,
+                "productStatus": 1,
+                "productTotalPrice": 69990,
+                "limitQuantity": "SUFFICIENT_STOCK"
+            },
+            {
+                "id": 133,
+                "userId": 1,
+                "productId": 28,
+                "quantity": 10,
+                "productChecked": 1,
+                "productName": "4+64G送手环/Huawei/华为 nova 手机P9/P10plus青春",
+                "productSubtitle": "NOVA青春版1999元",
+                "productMainImage": "0093f5d3-bdb4-4fb0-bec5-5465dfd26363.jpeg",
+                "productPrice": 1999,
+                "productStock": 9994,
+                "productStatus": 1,
+                "productTotalPrice": 19990,
+                "limitQuantity": "SUFFICIENT_STOCK"
             }
         ],
-        "allChecked": true,
-        "cartTotalPrice": 0
+        "cartTotalPrice": 19990,
+        "allChecked": false,
+        "imageHost": "http://img.mmall.com/"
     }
 }
 ```
@@ -404,10 +392,9 @@ fail
 ```
 {
     "status": 10,
-    "msg": "用户未登录,请登录"
+    "msg": "NEED_LOGIN"
 }
 ```
-
 
 ------
 
@@ -415,8 +402,7 @@ fail
 
 
 
-
-####7.查询在购物车里的产品数量
+#### 7.查询在购物车里的产品数量
 
 **/cart/get_cart_product_count.do**
 
@@ -437,19 +423,20 @@ success
 ```
 {
     "status": 0,
-    "data": 0
-    
+    "data": 20
 }
 ```
 
 fail
+
+如果userId=null，返回产品数量为0
+
 ```
 {
-    "status": 10,
-    "msg": "出现异常"
+    "status": 0,
+    "data": 0
 }
 ```
-
 
 ------
 
@@ -457,7 +444,7 @@ fail
 
 
 
-####8.购物车全选
+#### 8.购物车全选
 
 **/cart/select_all.do**
 
@@ -481,23 +468,39 @@ success
     "data": {
         "cartProductVoList": [
             {
-                "id": 2,
-                "userId": 13,
-                "productId": 2,
-                "quantity": 1,
-                "productName": "oppo R8",
-                "productSubtitle": "oppo促销进行中",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 2999.11,
+                "id": 132,
+                "userId": 1,
+                "productId": 26,
+                "quantity": 10,
+                "productChecked": 1,
+                "productName": "Apple iPhone 7 Plus (A1661) 128G 玫瑰金色 移动联通电信4G手机",
+                "productSubtitle": "iPhone 7，现更以红色呈现。",
+                "productMainImage": "241997c4-9e62-4824-b7f0-7425c3c28917.jpeg",
+                "productPrice": 6999,
+                "productStock": 9991,
                 "productStatus": 1,
-                "productTotalPrice": 2999.11,
-                "productStock": 86,
-                "productChecked": 0,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
+                "productTotalPrice": 69990,
+                "limitQuantity": "SUFFICIENT_STOCK"
+            },
+            {
+                "id": 133,
+                "userId": 1,
+                "productId": 28,
+                "quantity": 10,
+                "productChecked": 1,
+                "productName": "4+64G送手环/Huawei/华为 nova 手机P9/P10plus青春",
+                "productSubtitle": "NOVA青春版1999元",
+                "productMainImage": "0093f5d3-bdb4-4fb0-bec5-5465dfd26363.jpeg",
+                "productPrice": 1999,
+                "productStock": 9994,
+                "productStatus": 1,
+                "productTotalPrice": 19990,
+                "limitQuantity": "SUFFICIENT_STOCK"
             }
         ],
+        "cartTotalPrice": 89980,
         "allChecked": true,
-        "cartTotalPrice": 2999.11
+        "imageHost": "http://img.mmall.com/"
     }
 }
 ```
@@ -506,10 +509,9 @@ fail
 ```
 {
     "status": 10,
-    "msg": "用户未登录,请登录"
+    "msg": "NEED_LOGIN"
 }
 ```
-
 
 ------
 
@@ -517,7 +519,7 @@ fail
 
 
 
-####9.购物车取消全选
+#### 9.购物车取消全选
 
 **/cart/un_select_all.do**
 
@@ -541,23 +543,39 @@ success
     "data": {
         "cartProductVoList": [
             {
-                "id": 2,
-                "userId": 13,
-                "productId": 2,
-                "quantity": 1,
-                "productName": "oppo R8",
-                "productSubtitle": "oppo促销进行中",
-                "productMainImage": "mainimage.jpg",
-                "productPrice": 2999.11,
-                "productStatus": 1,
-                "productTotalPrice": 2999.11,
-                "productStock": 86,
+                "id": 132,
+                "userId": 1,
+                "productId": 26,
+                "quantity": 10,
                 "productChecked": 0,
-                "limitQuantity": "LIMIT_NUM_SUCCESS"
+                "productName": "Apple iPhone 7 Plus (A1661) 128G 玫瑰金色 移动联通电信4G手机",
+                "productSubtitle": "iPhone 7，现更以红色呈现。",
+                "productMainImage": "241997c4-9e62-4824-b7f0-7425c3c28917.jpeg",
+                "productPrice": 6999,
+                "productStock": 9991,
+                "productStatus": 1,
+                "productTotalPrice": 69990,
+                "limitQuantity": "SUFFICIENT_STOCK"
+            },
+            {
+                "id": 133,
+                "userId": 1,
+                "productId": 28,
+                "quantity": 10,
+                "productChecked": 0,
+                "productName": "4+64G送手环/Huawei/华为 nova 手机P9/P10plus青春",
+                "productSubtitle": "NOVA青春版1999元",
+                "productMainImage": "0093f5d3-bdb4-4fb0-bec5-5465dfd26363.jpeg",
+                "productPrice": 1999,
+                "productStock": 9994,
+                "productStatus": 1,
+                "productTotalPrice": 19990,
+                "limitQuantity": "SUFFICIENT_STOCK"
             }
         ],
-        "allChecked": true,
-        "cartTotalPrice": 0
+        "cartTotalPrice": 0,
+        "allChecked": false,
+        "imageHost": "http://img.mmall.com/"
     }
 }
 ```
@@ -566,9 +584,8 @@ fail
 ```
 {
     "status": 10,
-    "msg": "用户未登录,请登录"
+    "msg": "NEED_LOGIN"
 }
 ```
-
 
 ------

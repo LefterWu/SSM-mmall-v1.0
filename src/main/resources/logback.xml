@@ -24,11 +24,11 @@ debug:
 
     <!--项目的日志,滚动文件-->
     <appender name="mmall" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>D:/Program Files/Tomcat/apache-tomcat-8.0.53/logs/mmall.log</File>
+        <File>D:/Program Files/Tomcat/apache-tomcat-8.0.53/logs/mmall/mmall.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>D:/Program Files/Tomcat/apache-tomcat-8.0.53/logs/mmall.log.%d{yyyy-MM-dd}.zip</fileNamePattern>
+            <fileNamePattern>D:/Program Files/Tomcat/apache-tomcat-8.0.53/logs/mmall/mmall.log.%d{yyyy-MM-dd}.zip</fileNamePattern>
             <append>true</append>
-            <maxHistory>10</maxHistory>
+            <maxHistory>15</maxHistory>     <!--一般推荐保存至少15天-->
         </rollingPolicy>
         <encoder>
             <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
@@ -38,12 +38,12 @@ debug:
 
     <!--error的日志-->
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>D:/Program Files/Tomcat/apache-tomcat-8.0.53/logs/error.log</File>
+        <File>D:/Program Files/Tomcat/apache-tomcat-8.0.53/logs/mmall/mmall_error.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>D:/Program Files/Tomcat/apache-tomcat-8.0.53/logs/error.log.%d{yyyy-MM-dd}.zip</fileNamePattern>
+            <fileNamePattern>D:/Program Files/Tomcat/apache-tomcat-8.0.53/logs/mmall/mmall_error.log.%d{yyyy-MM-dd}.zip</fileNamePattern>
             <!--<fileNamePattern>d:/mmalllog/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
             <append>true</append>
-            <maxHistory>10</maxHistory>
+            <maxHistory>15</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>

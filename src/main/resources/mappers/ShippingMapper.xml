@@ -27,11 +27,37 @@
     from mmall_shipping
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <!--根据用户id和地址id查询shipping对象-->
+  <select id="selectByShippingIdUserId" resultMap="BaseResultMap"  >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM mmall_shipping
+    WHERE user_id = #{userId}
+    AND id = #{shippingId}
+  </select>
+
+  <!--查询用户的所有地址-->
+  <select id="selectAllByUserId" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM mmall_shipping
+    WHERE user_id = #{userId}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_shipping
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.mmall.pojo.Shipping" >
+
+  <!--根据用户名和shippingId删除地址，防止横向越权-->
+  <delete id="deleteByShippingIdUserId" parameterType="map">
+    DELETE FROM mmall_shipping
+    WHERE user_id = #{userId} AND id = #{shippingId}
+  </delete>
+
+  <!--useGeneratedKeys="true" keyProperty="id" 该配置用于得到自动生成的主键id-->
+  <insert id="insert" parameterType="com.mmall.pojo.Shipping" useGeneratedKeys="true" keyProperty="id">
     insert into mmall_shipping (id, user_id, receiver_name, 
       receiver_phone, receiver_mobile, receiver_province, 
       receiver_city, receiver_district, receiver_address, 
@@ -40,7 +66,7 @@
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, 
       #{receiverPhone,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, #{receiverProvince,jdbcType=VARCHAR}, 
       #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
-      #{receiverZip,jdbcType=VARCHAR}, now(), now()}
+      #{receiverZip,jdbcType=VARCHAR}, now(), now()
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mmall.pojo.Shipping" >
@@ -175,5 +201,21 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--根据用户名查询-->
+  <update id="updateByShippingUserId" parameterType="com.mmall.pojo.Shipping">
+     update mmall_shipping
+     set
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_province = #{receiverProvince,jdbcType=VARCHAR},
+      receiver_city = #{receiverCity,jdbcType=VARCHAR},
+      receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      update_time = now()
+    where id = #{id,jdbcType=INTEGER} AND user_id = #{userId}
   </update>
 </mapper>
