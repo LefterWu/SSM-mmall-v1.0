@@ -1,10 +1,12 @@
-[MENU]
+## 门户_支付接口
+
+[TOC]
 
 
 
 ------
 
-####1.支付
+#### 1.支付
 
 **/order/pay.do**
 
@@ -41,7 +43,7 @@ fail
 
 ------
 
-####2.查询订单支付状态
+#### 2.查询订单支付状态
 
 **/order/query_order_pay_status.do**
 
@@ -77,8 +79,7 @@ fail
 
 ------
 
-
-####3.支付宝回调
+#### 3.支付宝回调
 
 参考支付宝回调文档：
 https://support.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.mFogPC&treeId=193&articleId=103296&docType=1
@@ -104,30 +105,3 @@ fail
 failed
 ```
 
-------
-
-
-####0.模板
-
-**/REPLACE/.do**
-
-> request
-
-```
-k
-```
-
-> response
-
-success
-
-```
-k
-```
-
-fail
-```
-k
-```
-
-------
