@@ -10,7 +10,7 @@
 
 **/order/pay.do**
 
-http://localhost:8080/order/pay.do?orderNo=1485158676346
+http://localhost:8080/order/pay.do?orderNo=1491753014256
 
 
 > request
@@ -23,18 +23,18 @@ orderNo
 
 success
 
-```
+```json
 {
     "status": 0,
     "data": {
-        "orderNo": "1485158676346",
-        "qrPath": "http://img.happymmall.com/qr-1492329044075.png"
+        "orderNo": "1491753014256",
+        "qrUrl": "http://img.mmall.com/qr-1491753014256.png"
     }
 }
 ```
 
 fail
-```
+```json
 {
     "status": 1,
     "msg": "支付宝生成订单失败"
@@ -47,7 +47,7 @@ fail
 
 **/order/query_order_pay_status.do**
 
-http://localhost:8080/order/query_order_pay_status.do?orderNo=1485158676346
+http://localhost:8080/order/query_order_pay_status.do?orderNo=1491753014256
 
 
 > request
@@ -60,20 +60,19 @@ orderNo
 
 success
 
-```
+```json
 {
     "status": 0,
     "data": true
 }
 
-
 ```
 
 fail
-```
+```json
 {
     "status": 1,
-    "msg": "该用户并没有该订单,查询无效"
+    "msg": "查询错误，订单不存在"
 }
 ```
 
@@ -81,10 +80,10 @@ fail
 
 #### 3.支付宝回调
 
+**/order/alipay_callback.do**
+
 参考支付宝回调文档：
 https://support.open.alipay.com/docs/doc.htm?spm=a219a.7629140.0.0.mFogPC&treeId=193&articleId=103296&docType=1
-
-**/order/alipay_callback.do**
 
 > request
 

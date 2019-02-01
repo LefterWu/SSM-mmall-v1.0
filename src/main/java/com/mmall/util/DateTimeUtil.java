@@ -43,6 +43,4 @@ public class DateTimeUtil {
         return dateTime.toString(STANDARD_FORMAT);
     }
 
-
-
 }

@@ -23,7 +23,7 @@ import java.util.List;
  * @Description: 购物车业务
  * @author: wuleshen
  */
-@Service
+@Service("iCartService")
 public class CartServiceImpl implements ICartService {
 
     @Autowired

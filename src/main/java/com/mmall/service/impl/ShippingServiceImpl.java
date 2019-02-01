@@ -17,7 +17,7 @@ import java.util.Map;
  * @Description: 收货地址模块
  * @author: wuleshen
  */
-@Service
+@Service("iShippingService")
 public class ShippingServiceImpl implements IShippingService {
 
     @Autowired
