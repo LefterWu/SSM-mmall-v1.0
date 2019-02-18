@@ -30,7 +30,7 @@ public class UserManageController {
         //复用前台登录功能
         ServerResponse response = iUserService.login(username, password);
         //登录成功
-        if(response.isSuccuess()) {
+        if(response.isSuccess()) {
             //如果登录用户为管理员，
             User user = (User) response.getData();
             if(user.getRole().equals(Const.Role.ROLE_ADMIN)) {

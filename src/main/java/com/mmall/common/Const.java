@@ -17,6 +17,37 @@ public class Const {
     public static final String USERNAME = "username";
     public static final String EMAIL = "email";
 
+    // 支付方式
+    public enum PaymentTypeEnum {
+        ONLINE_PAY(1, "在线支付");
+
+        PaymentTypeEnum(int code,String value){
+            this.code = code;
+            this.value = value;
+        }
+
+        private String value;
+        private int code;
+
+        public String getValue() {
+            return value;
+        }
+
+        public int getCode() {
+            return code;
+        }
+
+        // 获得对应编码的描述
+        public static PaymentTypeEnum codeOf(int code) {
+            for (PaymentTypeEnum paymentType: values()) {
+                if (paymentType.getCode() == code) {
+                    return paymentType;
+                }
+            }
+            throw new RuntimeException("未找到对应的支付状态");
+        }
+    }
+
     // 用户角色
     public interface Role {
         int ROLE_CUSTOMER = 0;      //普通用户

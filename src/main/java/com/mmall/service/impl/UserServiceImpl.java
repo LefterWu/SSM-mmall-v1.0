@@ -50,11 +50,11 @@ public class UserServiceImpl implements IUserService {
     public ServerResponse<String> register(User user) {
         //校验用户名和邮箱
         ServerResponse<String> validResponse = checkValid(user.getUsername(), Const.USERNAME);
-        if (!validResponse.isSuccuess()) {
+        if (!validResponse.isSuccess()) {
             return validResponse;
         }
         validResponse = checkValid(user.getEmail(), Const.EMAIL);
-        if (!validResponse.isSuccuess()) {
+        if (!validResponse.isSuccess()) {
             return validResponse;
         }
         //通过校验
@@ -103,7 +103,7 @@ public class UserServiceImpl implements IUserService {
         //检查username是否存在，复用checkValid方法
         ServerResponse<String> validResponse = checkValid(username, Const.USERNAME);
         //username不存在，则校验成功，因此判断response为成功时，username不存在
-        if (validResponse.isSuccuess()) {
+        if (validResponse.isSuccess()) {
             return ServerResponse.createByErrorMessage("用户不存在");
         }
         String question = userMapper.selectQuestionByUsername(username);
@@ -134,7 +134,7 @@ public class UserServiceImpl implements IUserService {
         }
         //校验用户名，如果用户名不存在，返回错误响应
         ServerResponse<String> validResponse = this.checkValid(username, Const.USERNAME);
-        if(validResponse.isSuccuess()) {
+        if(validResponse.isSuccess()) {
             return ServerResponse.createByErrorMessage("用户名不存在");
         }
         //校验token

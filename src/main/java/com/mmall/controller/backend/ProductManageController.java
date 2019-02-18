@@ -56,7 +56,7 @@ public class ProductManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
         }
         //校验用户是否为管理员
-        if ( iUserService.checkAdminRole(user).isSuccuess() ) {
+        if ( iUserService.checkAdminRole(user).isSuccess() ) {
             //业务逻辑
             return iProductService.saveOrUpdate(product);
         } else {
@@ -80,7 +80,7 @@ public class ProductManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
         }
         //校验用户是否为管理员
-        if ( iUserService.checkAdminRole(user).isSuccuess() ) {
+        if ( iUserService.checkAdminRole(user).isSuccess() ) {
             //业务逻辑
             return iProductService.setSaleStatus(productId, status);
         } else {
@@ -103,7 +103,7 @@ public class ProductManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
         }
         //校验用户是否为管理员
-        if ( iUserService.checkAdminRole(user).isSuccuess() ) {
+        if ( iUserService.checkAdminRole(user).isSuccess() ) {
             //业务逻辑
             return iProductService.manageProductDetail(productId);
         } else {
@@ -130,7 +130,7 @@ public class ProductManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
         }
         //校验用户是否为管理员
-        if ( iUserService.checkAdminRole(user).isSuccuess() ) {
+        if ( iUserService.checkAdminRole(user).isSuccess() ) {
             //业务逻辑，添加动态分页
             return iProductService.getProductList(pageNum, pageSize);
         } else {
@@ -158,7 +158,7 @@ public class ProductManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
         }
         //校验用户是否为管理员
-        if ( iUserService.checkAdminRole(user).isSuccuess() ) {
+        if ( iUserService.checkAdminRole(user).isSuccess() ) {
             //业务逻辑
             return iProductService.searchProduct(productName,productId,pageNum,pageSize);
         } else {
@@ -182,7 +182,7 @@ public class ProductManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
         }
         //校验用户是否为管理员
-        if ( iUserService.checkAdminRole(user).isSuccuess() ) {
+        if ( iUserService.checkAdminRole(user).isSuccess() ) {
 
             //创建上传路径，src/main/webapp/upload
             String path = request.getSession().getServletContext().getRealPath("upload");
@@ -230,7 +230,7 @@ public class ProductManageController {
             return resultMap;
         }
         //校验用户是否为管理员
-        if ( iUserService.checkAdminRole(user).isSuccuess() ) {
+        if ( iUserService.checkAdminRole(user).isSuccess() ) {
 
             //创建上传路径，src/main/webapp/upload
             String path = request.getSession().getServletContext().getRealPath("upload");

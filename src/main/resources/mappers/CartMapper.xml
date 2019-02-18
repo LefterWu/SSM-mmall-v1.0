@@ -168,4 +168,12 @@
     SELECT IFNULL(sum(quantity),0) as count FROM mmall_cart
     WHERE user_id = #{userId}
   </select>
+
+  <!--查询已勾选购物车-->
+  <select id="selectCheckedCartByUserId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM mmall_cart
+    WHERE user_id = #{userId} and checked = 1
+  </select>
 </mapper>

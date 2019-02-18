@@ -3,7 +3,7 @@ package com.mmall.vo;
 import java.math.BigDecimal;
 
 /**
- * 商品列表VO对象
+ * 商品列表VO
  */
 public class ProductListVo {
 

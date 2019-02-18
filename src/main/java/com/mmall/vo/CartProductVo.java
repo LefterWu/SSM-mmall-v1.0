@@ -3,8 +3,7 @@ package com.mmall.vo;
 import java.math.BigDecimal;
 
 /**
- * @Description: 购物车和商品结合的vo对象
- * @author: wuleshen
+ * 购物车和商品结合的Vo
  */
 public class CartProductVo {
 

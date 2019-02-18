@@ -32,4 +32,7 @@ public interface CartMapper {
                                   @Param("productId") Integer productId);
 
     int selectCartProductCount(Integer userId);
+
+    // 获取已勾选购物车信息
+    List<Cart> selectCheckedCartByUserId(Integer userId);
 }

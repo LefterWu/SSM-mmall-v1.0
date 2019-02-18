@@ -46,7 +46,7 @@ public class CategoryManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
         }
         //校验是否为管理员
-        if(iUserService.checkAdminRole(user).isSuccuess()) {
+        if(iUserService.checkAdminRole(user).isSuccess()) {
             return iCategoryService.addCategory(categoryName, parentId);
         }
         return ServerResponse.createByErrorMessage("不是管理员用户，无法进行操作");
@@ -68,7 +68,7 @@ public class CategoryManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
         }
         //校验是否为管理员
-        if(iUserService.checkAdminRole(user).isSuccuess()) {
+        if(iUserService.checkAdminRole(user).isSuccess()) {
             //更新品类的名称
             return iCategoryService.updateCategoryName(categoryName, categoryId);
         }
@@ -91,7 +91,7 @@ public class CategoryManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
         }
         //校验是否为管理员
-        if(iUserService.checkAdminRole(user).isSuccuess()) {
+        if(iUserService.checkAdminRole(user).isSuccess()) {
             //查询同一级别子节点的category信息
             return iCategoryService.getChildrenParallelCategory(categoryId);
         }
@@ -114,7 +114,7 @@ public class CategoryManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请先登录");
         }
         //校验是否为管理员
-        if(iUserService.checkAdminRole(user).isSuccuess()) {
+        if(iUserService.checkAdminRole(user).isSuccess()) {
             //查询当前节点和递归子节点的category信息
             return iCategoryService.getCategoryAndChildrenById(categoryId);
         }

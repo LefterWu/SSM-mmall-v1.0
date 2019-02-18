@@ -5,7 +5,6 @@ import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +37,7 @@ public class UserController {
     public ServerResponse<User> login(String username, String password, HttpSession session) {
         ServerResponse response = iUserService.login(username,password);
         //如果响应成功,将user对象保存到session
-        if(response.isSuccuess()) {
+        if(response.isSuccess()) {
             session.setAttribute(Const.CURRENT_USER, response.getData());
         }
         return response;
@@ -168,7 +167,7 @@ public class UserController {
         //调用Service更新用户信息
         ServerResponse<User> serverResponse = iUserService.updateInformation(user);
         //更新成功，serverResponse中的user对象（更新后的user）放到当前session中
-        if( serverResponse.isSuccuess() ) {
+        if( serverResponse.isSuccess() ) {
             serverResponse.getData().setUsername(currentUser.getUsername());
             session.setAttribute(Const.CURRENT_USER, serverResponse.getData());
         }
