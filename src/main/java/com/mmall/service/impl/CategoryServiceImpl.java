@@ -107,11 +107,10 @@ public class CategoryServiceImpl implements ICategoryService {
         //查找下一层的所有子节点
         List<Category> categoryList = categoryMapper.selectChildrenCategoryByParentId(categoryId);
         //调试用
-        if(logger.isInfoEnabled()) {
-            for(Category c: categoryList) {
-                logger.info("categoryList: " + c.toString());
-            }
+        for(Category c: categoryList) {
+            logger.debug("categoryList: " + c.toString());
         }
+
         //如果有子节点，递归调用
         for (Category categoryItem: categoryList) {
             findChildCategory(categorySet, categoryItem.getId());
